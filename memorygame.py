@@ -5,7 +5,6 @@ import string
 import os
 from turtle import clear
 os.system('clear')
-yesses = ("y","yes","yeah","yap","yessir")
 letters = string.ascii_letters
 numbers = string.digits
 char = list(letters+numbers)
@@ -13,17 +12,15 @@ print("Welcome to the Memory Game! In this game you will have some random letter
 
 def main():
     def conclusion():
-        print(f"Thanks for playing {playername}! Do you want to play again?")
-        restart = input("")
-        if restart in yesses:
+        restart = input(f"Thanks for playing {playername}! Do you want to play again?\n")
+        if restart.startswith("y"):
             print("Ok then, lets restart everything!")
             game()
         else:
             print(f"Ok then {playername}. Have a nice day!")
+            exit()
     start = input("Let´s start? ").lower()
-    if start not in yesses:
-        print("Alright then! Have a good day :)")
-    else:
+    if start.startswith("y"):
         playername = input("First of all, what´s your name? ").title()
         print(f"Ok {playername} lets start then!")
         def game():
@@ -64,4 +61,6 @@ def main():
                     else:
                         print("Incorrect! Try again")
         game()
+    else:
+        print("Alright then! Have a good day :)")
 main()
