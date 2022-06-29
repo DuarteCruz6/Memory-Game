@@ -1,32 +1,13 @@
-    # memory game
+# memory game
 import time
 import random
 import string
 import os
-from turtle import clear
-os.system('clear')
-yesses = ("y","yes","yeah","yap","yessir")
-letters = string.ascii_letters
-numbers = string.digits
-char = list(letters+numbers)
-print("Welcome to the Memory Game! In this game you will have some random letters and numbers and you will need to rewrite them.")
 
-def main():
-    def conclusion():
-        print(f"Thanks for playing {playername}! Do you want to play again?")
-        restart = input("")
-        if restart in yesses:
-            print("Ok then, lets restart everything!")
-            game()
-        else:
-            print(f"Ok then {playername}. Have a nice day!")
-    start = input("Let´s start? ").lower()
-    if start not in yesses:
-        print("Alright then! Have a good day :)")
-    else:
-        playername = input("First of all, what´s your name? ").title()
-        print(f"Ok {playername} lets start then!")
-        def game():
+def cls():
+    os.system('cls||clear')
+
+def game():
             global levelnumber
             global maxtries
             global i
@@ -46,10 +27,13 @@ def main():
                     try1 = []
                     print(f"Level {levelnumber}")
                     print(f"The word is: {word}")
-                    time.sleep(i)
-                    os.system('clear')
                     print(f"Try {tries}/{maxtries}")
-                    try2 = input("What was the word? ")
+                    print(f"You have {i} seconds to memorize the word!")
+                    time.sleep(i)
+                    cls()
+                    inputbuffer = input("Press enter to continue\n") 
+                    cls()
+                    try2 = input("What was the word: ")
                     for elem in try2:
                         try1.append(elem)
                     if tries == maxtries and try1 != word:
@@ -63,5 +47,31 @@ def main():
                         break
                     else:
                         print("Incorrect! Try again")
+
+def conclusion():
+        print(f"Thanks for playing {playername}! Do you want to play again?")
+        restart = input("")
+        if restart in yesses:
+            print("Ok then, lets restart everything!")
+            game()
+        else:
+            print(f"Ok then {playername}. Have a nice day!")
+
+cls()
+yesses = ("y","yes","yeah","yap","yessir")
+letters = string.ascii_letters
+numbers = string.digits
+char = list(letters+numbers)
+print("Welcome to the Memory Game! In this game you will have some random letters and numbers and you will need to rewrite them.")
+print("You will have 5 tries per level and you will get a new level every time you pass.")
+print("You will also have to remember the capitalization's of each letter and get it correct.\n")
+
+def main():
+    start = input("Let's start? ").lower()
+    if start not in yesses:
+        print("Alright then! Have a good day :)")
+    else:
+        playername = input("First of all, what´s your name? ").title()
+        print(f"Ok {playername} lets start then!")
         game()
 main()
